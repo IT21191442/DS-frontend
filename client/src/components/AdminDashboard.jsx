@@ -12,7 +12,7 @@ const AdminDashboard = () => {
     <nav className={`w-64 h-screen bg-gray-800 fixed top-0 left-0 overflow-y-auto pt-20 ${isSidebarOpen ? '' : 'hidden'}`}>
       <ul className="list-none p-0">
         <li className="mb-4">
-          <Link to="/user" className="block px-4 py-2 text-white hover:bg-gray-700">User</Link>
+          <Link to="/userManagement" className="block px-4 py-2 text-white hover:bg-gray-700">User</Link>
         </li>
         <li className="mb-4">
           <Link to="/upload" className="block px-4 py-2 text-white hover:bg-gray-700">Courses</Link>

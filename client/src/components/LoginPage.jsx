@@ -31,13 +31,13 @@ const LoginPage = () => {
             if (data.user.role === "admin") {
                 showSuccessToast("Login successful!");
                 setTimeout(() => {
-                    navigate("/userManagement");
+                    navigate("/AdminDashboard");
                     window.location.reload();
                 }, 2000);
             } else {
                 showSuccessToast("Login successful!");
                 setTimeout(() => {
-                    navigate("/userManagement");
+                    navigate("/profile");
                     window.location.reload();
                 }, 2000);
             }

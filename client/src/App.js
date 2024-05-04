@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import NavBar from './components/NavBar';
 import UserProfile from './components/UserProfile';
 import UserManagement from './components/UserManagement';
+import AdminRegister from './components/AdminRegister';
 
 
 
@@ -43,6 +44,9 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/userManagement" element={<UserManagement />} />
             <Route path="/editUser/:userId" element={<EditUserDetails />} />
+            <Route path="/adminRegister" element={<AdminRegister />} />
+
+
 
 
             <Route path="/AdminDashboard" exact element={<AdminDashboard />} />
@@ -54,40 +58,12 @@ function App() {
             <Route path="/questions/:id" element={<Questions />} />
           </>
         )}
-        {/* {user === "admin" && (
-            <>
-              <Route path="/adminRegister" element={<AddNewAdmin />} />
+        {user === "user" && (
+          <>
+            <Route path="/profile" element={<UserProfile />} />
 
-              <Route path="/adminHome" element={<AdminHome />} />
-
-              <Route path="/adminHomeDevices" element={<AdminHomeDevices />} />
-
-              <Route path="/addNewDevice" element={<AddNewDevice />} />
-
-              <Route
-                path="/updateDevice/:deviceId"
-                element={<UpdateDevice />}
-              />
-
-              <Route path="/addNewLocation" element={<AddNewLocation />} />
-
-              <Route
-                path="/adminHomeLocations"
-                element={<AdminHomeLocations />}
-              />
-              <Route
-                path="/updateLocation/:locationId"
-                element={<UpdateLocation />}
-              />
-
-              <Route
-                path="/locationDetailsPage/:locationId"
-                element={<LocationDetailsPage />}
-              />
-
-              <Route path="/userManagement" element={<UserManagement />} />
-            </>
-          )} */}
+          </>
+        )}
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

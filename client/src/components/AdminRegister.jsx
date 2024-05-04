@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
-const RegisterPage = () => {
+const AdminRegister = () => {
     const navigate = useNavigate();
 
     const [firstname, setFirstName] = useState("");
@@ -54,20 +54,25 @@ const RegisterPage = () => {
         }
     };
 
+    const handleCancel = () => {
+
+        navigate('/AdminDashboard')
+    }
+
     return (
         <div className="container mx-auto">
             <div className="flex justify-center">
                 <div className="w-full lg:w-1/2">
                     <div className="ugf-container-wrap flex items-center justify-center min-h-screen">
                         <div className="ugf-container border-2 border-gray-200 rounded-lg">
-                            <div className="ugf-content ugf-content-reg p-8">
+                            {/* <div className="ugf-content ugf-content-reg p-8">
                                 <p className="text-lg text-gray-500">
                                     Explore our platform for diverse educational resources. Join
                                     us and unlock your learning potential today!
                                 </p>
-                            </div>
+                            </div> */}
                             <div className="ugf-form p-8">
-                                <h3 className="text-2xl font-bold mb-8">Sign up Now</h3>
+                                <h3 className="text-2xl font-bold mb-8">Register New Admin</h3>
                                 <form onSubmit={handleRegister}>
                                     <div className="grid grid-cols-2 gap-4 mb-4">
                                         <div className="form-group">
@@ -135,7 +140,7 @@ const RegisterPage = () => {
                                             />
                                         </div>
                                     </div>
-                                    <span className="terms text-gray-500 text-sm mb-4 block">
+                                    {/* <span className="terms text-gray-500 text-sm mb-4 block">
                                         By clicking here and continuing,{" "}
                                         <span>
                                             I agree to the{" "}
@@ -148,22 +153,28 @@ const RegisterPage = () => {
                                             </a>
                                             .
                                         </span>
-                                    </span>
+                                    </span> */}
                                     <button
                                         type="submit"
                                         className="btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 w-full h-12 font-medium"
                                     >
                                         Register Account
                                     </button>
+                                    <button
+                                        onClick={handleCancel}
+                                        className="btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 w-full h-12 font-medium mt-5"
+                                    >
+                                        Cancel
+                                    </button>
                                 </form>
-                                <div className="alternet-access mt-4">
+                                {/* <div className="alternet-access mt-4">
                                     <p>
                                         Already have an account?{" "}
                                         <Link to="/login" className="text-blue-500">
                                             &nbsp; Log in now!
                                         </Link>
                                     </p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -173,4 +184,4 @@ const RegisterPage = () => {
     );
 };
 
-export default RegisterPage;
+export default AdminRegister;

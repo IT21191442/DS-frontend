@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { showErrorToast, showSuccessToast } from "./services/AlertService";
 
@@ -10,6 +10,9 @@ const UserProfile = () => {
     const [telephone, setTelephone] = useState("");
     const [address, setAddress] = useState("");
     const [role, setRole] = useState("");
+
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchUserDetails();
@@ -28,19 +31,24 @@ const UserProfile = () => {
                 Authorization: `Bearer ${token}`,
             };
 
+
             const response = await axios.get(
                 "http://localhost:5000/users/api/v1/user-service/profile",
                 { headers }
             );
 
-            const { firstname, lastname, email, telephone, address, role } =
-                response.data.data;
+            const { firstname, lastname, email, telephone, address, role } = response.data.data;
             setFirstName(firstname);
             setLastName(lastname);
             setEmail(email);
             setTelephone(telephone);
             setAddress(address);
             setRole(role);
+
+
+            navigate('/')
+
+
         } catch (error) {
             console.error("Error fetching user details:", error);
             showErrorToast("Error fetching user details");

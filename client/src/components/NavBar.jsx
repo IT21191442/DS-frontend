@@ -30,7 +30,7 @@ export default function NavBar() {
                     <div className="flex items-center">
                         {/* <img src={Logo} alt="Logo" className="h-12 w-12 rounded-full object-cover" /> */}
                         <a className="text-white text-3xl font-bold ml-5" href="#">
-                            Location And Device Management System
+                            Bla Bla Bla
                         </a>
                     </div>
                     <div className="md:flex md:items-center space-x-4">
