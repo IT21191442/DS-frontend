@@ -18,7 +18,7 @@ const AdminDashboard = () => {
           <Link to="/upload" className="block px-4 py-2 text-white hover:bg-gray-700">Courses</Link>
         </li>
         <li className="mb-4">
-          <Link to="/getAllCourses" className="block px-4 py-2 text-white hover:bg-gray-700">Payment</Link>
+          <Link to="/payment" className="block px-4 py-2 text-white hover:bg-gray-700">Payment</Link>
         </li>
         <li className="mb-4">
           <Link to="/learner" className="block px-4 py-2 text-white hover:bg-gray-700">Learner</Link>
