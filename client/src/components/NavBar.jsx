@@ -17,7 +17,8 @@ export default function NavBar() {
 
     const logOut = () => {
         localStorage.clear();
-        navigate("/login");
+        navigate("/");
+        window.location.reload();
     };
 
     const handleprofile = () => {

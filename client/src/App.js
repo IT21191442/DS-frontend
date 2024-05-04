@@ -44,8 +44,6 @@ function App() {
             <Route path="/adminRegister" element={<AdminRegister />} />
 
 
-
-
             <Route path="/AdminDashboard" exact element={<AdminDashboard />} />
             <Route path="/upload" element={<Upload />} />
             <Route path="/getAllCourses" element={<CourseListAdmin />} />
