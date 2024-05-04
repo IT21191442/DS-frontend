@@ -17,11 +17,11 @@ import NavBar from './components/NavBar';
 import UserProfile from './components/UserProfile';
 import UserManagement from './components/UserManagement';
 import AdminRegister from './components/AdminRegister';
+import UserHomePage from './components/UserHomePage';
 
 
 
 function App() {
-
 
   const [user, setUser] = useState(null);
 
@@ -32,9 +32,6 @@ function App() {
 
   return (
     <div className="App">
-
-
-
 
       <NavBar />
       <ToastContainer />
@@ -61,18 +58,15 @@ function App() {
         {user === "user" && (
           <>
             <Route path="/profile" element={<UserProfile />} />
+            <Route path="/userHomePage" element={<UserHomePage />} />
 
           </>
         )}
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+
       </Routes>
-
-
-
-
-
 
 
       {/* <Routes>
@@ -81,15 +75,6 @@ function App() {
         <EditUserDetails />
         <LoginPage />
         <RegisterPage />
-
-
-
-
-
-
-
-
-
 
 
         <Route path="/AdminDashboard" exact element={<AdminDashboard />} />

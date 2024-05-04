@@ -46,7 +46,7 @@ const UserProfile = () => {
             setRole(role);
 
 
-            navigate('/')
+            // navigate('/')
 
 
         } catch (error) {
@@ -88,6 +88,11 @@ const UserProfile = () => {
             showErrorToast("Error updating user details");
         }
     };
+
+
+    const handleCancel = () => {
+        navigate('/userHomePage')
+    }
 
     return (
         <div className="container mx-auto">
@@ -175,6 +180,7 @@ const UserProfile = () => {
                                     <button
                                         type="button"
                                         className="btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                                        onClick={handleCancel}
                                     >
                                         Cancel
                                     </button>

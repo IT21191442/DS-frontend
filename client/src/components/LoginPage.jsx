@@ -37,7 +37,7 @@ const LoginPage = () => {
             } else {
                 showSuccessToast("Login successful!");
                 setTimeout(() => {
-                    navigate("/profile");
+                    navigate("/userHomePage");
                     window.location.reload();
                 }, 2000);
             }
