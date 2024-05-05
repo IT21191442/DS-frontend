@@ -23,7 +23,7 @@ const CourseUpdate = () => {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/videos/getOneCourseById/${id}`);
+        const response = await axios.get(`http://localhost:5000/courses/api/v1/api/videos/getOneCourseById/${id}`);
         setCourse(response.data.video);
         setFormData(response.data.video); 
         setLoading(false);
@@ -46,7 +46,7 @@ const CourseUpdate = () => {
 
   const handleUpdate = async () => {
     try {
-      const updateURL = `http://localhost:5000/api/videos/updateOneCourseById/${id}`;
+      const updateURL = `http://localhost:5000/courses/api/v1/api/videos/updateOneCourseById/${id}`;
       await axios.put(updateURL, formData);
       alert('Course updated successfully')
       navigate('/getAllCourses'); 

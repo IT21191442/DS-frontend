@@ -11,7 +11,7 @@ const CourseList = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/videos/getAllCourses');
+        const response = await axios.get('http://localhost:5000/courses/api/v1/api/videos/getAllCourses');
         setCourses(response.data.videos || []);
       } catch (error) {
         console.error("Fetch error:", error);

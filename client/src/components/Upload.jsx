@@ -54,7 +54,7 @@ const Upload = () => {
       await axios.post(
         `${
           process.env.REACT_APP_BACKEND_BASEURL || "http://localhost:5000"
-        }/api/videos`,
+        }/courses/api/v1/api/videos`,
         {
           courseid,
           coursename,

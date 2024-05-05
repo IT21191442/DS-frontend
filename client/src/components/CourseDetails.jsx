@@ -13,7 +13,7 @@ const CourseQuiz = () => {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/videos/getOneCourseById/${id}`);
+        const response = await axios.get(`http://localhost:5000/courses/api/v1/api/videos/getOneCourseById/${id}`);
         setCourse(response.data.video);
         setLoading(false);
       } catch (error) {
@@ -30,7 +30,7 @@ const CourseQuiz = () => {
     
     if (shouldDelete) {
       try {
-        const deleteURL = `http://localhost:5000/api/videos/deleteOneCourseById/${id}`;
+        const deleteURL = `http://localhost:5000/courses/api/v1/api/videos/deleteOneCourseById/${id}`;
         await axios.delete(deleteURL);
         console.log("Course deleted successfully!");
         navigate('/getAllCourses');
