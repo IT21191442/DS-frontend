@@ -8,7 +8,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    //update
     const handleSubmit = async (e) => {
         e.preventDefault();
 
