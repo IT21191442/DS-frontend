@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
 import React, { useState } from 'react';
 import AdminDashboard from './AdminDashboard';
 import welldone_gif from '../Images/welldone.gif';
@@ -6,6 +6,7 @@ import welldone_gif from '../Images/welldone.gif';
 
 const Questions = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   // Java Questions
   const javaQuestions = [
@@ -378,21 +379,39 @@ setIsScoreModalOpen(!isScoreModalOpen);
 
 // Render score modal content
 const renderScoreDetailsModal = () => {
+  // Calculate score
+  const { correctCount, wrongCount, totalQuestions, score } = calculateScore();
+
+  // Determine pass or fail
+  const passOrFail = score >= 45 ? "Pass" : "Fail";
+
+  const handleStartQuiz = () => {
+    navigate(`/quizeHome/${id}`);
+    console.log(id);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
       <div className="bg-gray-900 rounded-lg p-12 max-w-md">
         {/* Gif added here */}
         <img src={welldone_gif} alt="Well Done" className="mx-auto mb-8" />
         <h2 className="text-xl font-bold mb-4">Result</h2>
-        <p>Total Questions: {scoreDetails.totalQuestions}</p>
-        <p>Correct Answers: {scoreDetails.correctCount}</p>
-        <p>Wrong Answers: {scoreDetails.wrongCount}</p>
-        <p>Total Score: {scoreDetails.score.toFixed(2)}%</p>
+        <p>Total Questions: {totalQuestions}</p>
+        <p>Correct Answers: {correctCount}</p>
+        <p>Wrong Answers: {wrongCount}</p>
+        <p>Total Score: {score.toFixed(2)}%</p>
+        <p className={passOrFail === "Pass" ? "text-green-500" : "text-red-500"}>{passOrFail}</p>
+        {passOrFail === "Fail" && (
+          <button className="mt-4 mr-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600" onClick={() => handleStartQuiz()}>
+            Try Again
+          </button>
+        )}
         <button className="mt-4 px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-800" onClick={toggleScoreModal}>Close</button>
       </div>
     </div>
   );
 };
+
 return (
 <div className="flex flex-col items-center justify-center min-h-screen bg-gray-700 text-gray-100 py-8">
   <AdminDashboard />
