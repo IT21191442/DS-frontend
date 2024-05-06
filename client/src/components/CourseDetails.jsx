@@ -57,61 +57,33 @@ const CourseQuiz = () => {
   }
 
   return (
-    <div>
+    <div className='bg-gray-700 text-gray '><br></br>
       <AdminDashboard />
-      <div style={styles.container}>
-        
-        <h2>{course?.coursename || 'Course Name N/A'}</h2>
+      <div className="container mx-auto p-6 bg-white shadow-md rounded-lg max-w-4xl">
+        <h2 className="text-2xl font-bold mb-4">{course?.coursename || 'Course Name N/A'}</h2>
         <p>Course ID: {course?.courseid || 'Course ID N/A'}</p>
         <img 
           src={course?.imgUrl || 'Image URL N/A'} 
           alt={course?.coursename || 'Course Name N/A'} 
-          style={styles.image}
-        />
+          className="max-w-full mt-4"
+        /><br></br>
         <p>Description: {course?.description || 'Description N/A'}</p>
         <p>Sections: {course?.sections || 'Sections N/A'}</p>
-        <video controls style={styles.video}>
+        <video controls className="max-w-full mt-2">
           <source src={course?.videoUrl || ''} type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video><br></br>
         <p>References: {course?.references || 'References N/A'}</p>
         <p>Price: {course?.price || 'Price N/A'}</p>
 
-        <div style={styles.buttonContainer}>
-          <button style={styles.button} onClick={handleDelete}>Delete</button>
-          <button style={styles.button} onClick={handleUpdate}>Update</button>
-          <button style={styles.button} onClick={handleStartQuiz}>Start Quiz</button>
+        <div className="mt-6 flex justify-center space-x-4">
+          <button className="bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={handleDelete}>Delete</button>
+          <button className="bg-blue-950 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded" onClick={handleUpdate}>Update</button>
+          <button className="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={handleStartQuiz}>Start Quiz</button>
         </div>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    margin: '80px 20px 20px 20px', // Added top margin to account for the navbar
-    padding: '20px 400px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-  },
-  image: {
-    maxWidth: '300px',
-    marginTop: '20px',
-  },
-  video: {
-    maxWidth: '300px',
-    marginTop: '10px',
-  },
-  buttonContainer: {
-    marginTop: '20px',
-  },
-  button: {
-    margin: '0 10px',
-    padding: '10px 20px',
-    fontSize: '16px',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
 };
 
 export default CourseQuiz;

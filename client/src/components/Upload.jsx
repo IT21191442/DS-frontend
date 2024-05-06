@@ -96,7 +96,7 @@ const Upload = () => {
       <div className="bg-gray-700 text-gray-100 py-8">
         <h2 className="text-3xl font-bold text-gray-100 mt-0 text-center">
           Upload Course
-        </h2>
+        </h2><br></br>
 
         <form
           onSubmit={handleSubmit}
@@ -112,7 +112,7 @@ const Upload = () => {
               value={courseid}
               onChange={(e) => setCourseid(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-500 rounded"
+              className="w-full px-4 py-2 border border-gray-500 rounded text-black"
             />
           </div>
 
@@ -125,7 +125,7 @@ const Upload = () => {
               value={coursename}
               onChange={(e) => setCoursename(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-500 rounded"
+              className="w-full px-4 py-2 border border-gray-500 rounded text-black"
             />
           </div>
 
@@ -137,7 +137,7 @@ const Upload = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-500 rounded"
+              className="w-full px-4 py-2 border border-gray-500 rounded text-black"
               rows="6"
             />
           </div>
@@ -150,7 +150,7 @@ const Upload = () => {
               type="text"
               value={sections}
               onChange={(e) => setSections(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-500 rounded"
+              className="w-full px-4 py-2 border border-gray-500 rounded text-black"
             />
           </div>
 
@@ -159,10 +159,10 @@ const Upload = () => {
               References:
             </label>
             <input
-              type="text"
+              type="textarea"
               value={references}
               onChange={(e) => setReferences(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-500 rounded"
+              className="w-full px-4 py-2 border border-gray-500 rounded text-black"
             />
           </div>
 
@@ -174,7 +174,7 @@ const Upload = () => {
               type="text"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-500 rounded"
+              className="w-full px-4 py-2 border border-gray-500 rounded text-black"
             />
           </div>
 
@@ -208,7 +208,7 @@ const Upload = () => {
 
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-950 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
           >
             Upload
           </button>
@@ -228,7 +228,7 @@ const Upload = () => {
         {/* Button to view courses */}
         <button
           onClick={handleViewCourses}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded absolute top-8 right-8"
+          className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded absolute top-24 right-8"
         >
           View Courses
         </button>

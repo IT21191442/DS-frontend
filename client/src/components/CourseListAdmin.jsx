@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
 import Courses from "../Images/download.png";
+import AdminDashboard from "./AdminDashboard";
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -28,34 +28,28 @@ const CourseList = () => {
   }
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Course List</h2>
-      <div className="row row-cols-1 row-cols-md-3 g-4">  {/* Responsive grid for cards */}
+    <div className="container bg-gray-700 text-gray  ">
+      <AdminDashboard />
+      <h1 className="text-center text-white text-4xl font-bold mb-4">Course List</h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 "> {/* Responsive grid for cards */}
         {courses.map((course, index) => (
-          <div key={index} className="col mb-4">
-            <Card style={{ backgroundColor: '#ffffff', borderRadius: '10px', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
-              {/* <Card.Img variant="top" src={course.imgUrl || 'N/A'} alt={course.coursename || 'N/A'} style={{ height: '200px', objectFit: 'cover', borderRadius: '10px 10px 0 0' }} /> */}
-               <Card.Img variant="top" src={Courses} alt={"CourseImage"} style={{ height: '200px', objectFit: 'cover', borderRadius: '10px 10px 0 0' }} /> 
-              
-              <Card.Body style={{ padding: '20px', backgroundColor: '#f5f5f5' }}>
-                <Card.Title style={{ color: '#343a40', fontSize: '1.25rem', marginBottom: '15px' }}>
-                  <b>{course.coursename || 'N/A'}</b>
-                </Card.Title>
-                <Card.Text style={{ color: '#6c757d', fontSize: '0.9rem' }}>
-                  <strong>Course ID:</strong> {course.courseid || 'N/A'}
-                  <br />
-                  <strong>Price:</strong> {course.price || 'N/A'}
-                  <br />
-                  <strong>Sections:</strong> {course.sections || 'N/A'}
-                </Card.Text>
-                <Link to={`/course/${course.courseid}`} className="btn btn-primary" style={{ backgroundColor: '#007bff', borderColor: '#007bff', borderRadius: '0 0 10px 10px' }}>
+          <div key={index}>
+            <div className="bg-white shadow-md rounded-md overflow-hidden ml-8 mr-8">
+              <img src={Courses} alt="CourseImage" className="h-48 w-full object-cover" />
+              <div className="p-4">
+                <h3 className="text-2xl font-semibold mb-2">{course.coursename || 'N/A'}</h3>
+                <p className="text-gray-600 mb-2"><strong>Course ID:</strong> {course.courseid || 'N/A'}</p>
+                <p className="text-gray-600 mb-2"><strong>Price:</strong> {course.price || 'N/A'}</p>
+                <p className="text-gray-600 mb-2"><strong>Sections:</strong> {course.sections || 'N/A'}</p>
+                <Link to={`/course/${course.courseid}`} className="inline-block bg-blue-950 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
                   View Course
                 </Link>
-              </Card.Body>
-            </Card>
+              </div>
+            </div>
           </div>
         ))}
-      </div>
+      </div><br></br>
     </div>
   );
 };

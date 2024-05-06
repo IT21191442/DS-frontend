@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import React, { useState } from 'react';
 import AdminDashboard from './AdminDashboard';
+import welldone_gif from '../Images/welldone.gif';
 
 
 const Questions = () => {
@@ -260,181 +261,174 @@ const javaScriptQuestions = [
   },
 ];
 
+// Determine questions based on id
+const questions =
+id === 'JV3070' ? javaQuestions :
+id === 'PH3040' ? phpQuestions :
+id === 'JS3090' ? javaScriptQuestions :
+pythonQuestions;
 
- const questions = id === 'JV3070' ? javaQuestions : (id === 'PH3040' ? phpQuestions : (id === 'JS3090' ? javaScriptQuestions : pythonQuestions));
+// State for selected options and page navigation
+const [selectedOptions, setSelectedOptions] = useState({});
+const [currentPage, setCurrentPage] = useState(1);
+const questionsPerPage = 2;
+const totalPages = Math.ceil(questions.length / questionsPerPage);
 
+// State for score details and modal
+const [scoreDetails, setScoreDetails] = useState({
+correctCount: 0,
+wrongCount: 0,
+totalQuestions: 0,
+score: 0,
+});
+const [isScoreModalOpen, setIsScoreModalOpen] = useState(false);
 
-
-  const [selectedOptions, setSelectedOptions] = useState({});
-  const [currentPage, setCurrentPage] = useState(1);
-  const questionsPerPage = 2;
-  const totalPages = Math.ceil(questions.length / questionsPerPage);
-
-  const handleOptionChange = (questionId, option) => {
-    setSelectedOptions({
-      ...selectedOptions,
-      [questionId]: option,
-    });
-  };
-
-  const renderQuestions = () => {
-    const startIndex = (currentPage - 1) * questionsPerPage;
-    const endIndex = startIndex + questionsPerPage;
-
-    return questions.slice(startIndex, endIndex).map((questionObj, index) => (
-      <div key={index} style={styles.question}>
-        <strong>Question {questionObj.id}:</strong> {questionObj.question}
-        <ul style={styles.optionsList}>
-          {questionObj.options.map((option, optionIndex) => (
-            <li key={optionIndex}>
-              <label>
-                <input
-                  type="radio"
-                  name={`question${questionObj.id}`}
-                  value={option}
-                  checked={selectedOptions[questionObj.id] === option}
-                  onChange={() => handleOptionChange(questionObj.id, option)}
-                />
-                {option}
-              </label>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ));
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const calculateScore = () => {
-    let correctCount = 0;
-    let wrongCount = 0;
-
-    questions.forEach((question) => {
-      const selectedOption = selectedOptions[question.id];
-      if (selectedOption === question.answer) {
-        correctCount++;
-      } else {
-        wrongCount++;
-      }
-    });
-
-    const totalQuestions = questions.length;
-    const score = (correctCount / totalQuestions) * 100;
-
-    return {
-      correctCount,
-      wrongCount,
-      totalQuestions,
-      score,
-    };
-  };
-
-  const handleSubmit = () => {
-    // Calculate the score when the Submit button is clicked
-    const { correctCount, wrongCount, totalQuestions, score } = calculateScore();
-    setScoreDetails({
-      correctCount,
-      wrongCount,
-      totalQuestions,
-      score,
-    });
-  };
-
-  // State to store the score details
-  const [scoreDetails, setScoreDetails] = useState({
-    correctCount: 0,
-    wrongCount: 0,
-    totalQuestions: 0,
-    score: 0,
-  });
-
-  const { correctCount, wrongCount, totalQuestions, score } = calculateScore();
-
-
-  return (
-      <div style={styles.container}>
-        <AdminDashboard />
-        <h1>Answer the all the questions</h1>
-        <div style={styles.questionsContainer}>
-          {renderQuestions()}
-        </div>
-        <div style={styles.pagination}>
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
-          <span>{currentPage} / {totalPages}</span>
-          <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next</button>
-          {currentPage === totalPages && (
-            <button onClick={handleSubmit} style={styles.submitButton}>Submit</button>
-          )}
-        </div>
-        {scoreDetails.score !== 0 && (
-          <div style={styles.resultContainer}>
-            <h2>Result</h2>
-            <p>Total Questions: {scoreDetails.totalQuestions}</p>
-            <p>Correct Answers: {scoreDetails.correctCount}</p>
-            <p>Wrong Answers: {scoreDetails.wrongCount}</p>
-            <p>Total Score: {scoreDetails.score.toFixed(2)}%</p>
-          </div>
-        )}
-      </div>
-    );
-  };
-
-// Inline styles
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '90vh',
-    backgroundColor: '#f9f9f9',
-    padding: '40px',
-    borderRadius: '15px',
-  },
-  questionsContainer: {
-    width: '80%',
-    maxWidth: '800px',
-    marginTop: '30px',
-  },
-  question: {
-    marginBottom: '20px',
-    padding: '15px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-  },
-  optionsList: {
-    listStyleType: 'none',
-    paddingLeft: '20px',
-  },
-  pagination: {
-    marginTop: '20px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  resultContainer: {
-    marginTop: '30px',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    width: '80%',
-    maxWidth: '800px',
-  },
-  submitButton: {
-    marginLeft: '20px',
-  },
+// Handle option change
+const handleOptionChange = (questionId, option) => {
+setSelectedOptions({
+  ...selectedOptions,
+  [questionId]: option,
+});
 };
 
+// Calculate score
+const calculateScore = () => {
+let correctCount = 0;
+let wrongCount = 0;
+
+questions.forEach((question) => {
+  const selectedOption = selectedOptions[question.id];
+  if (selectedOption === question.answer) {
+    correctCount++;
+  } else {
+    wrongCount++;
+  }
+});
+
+const totalQuestions = questions.length;
+const score = (correctCount / totalQuestions) * 100;
+
+return {
+  correctCount,
+  wrongCount,
+  totalQuestions,
+  score,
+};
+};
+
+// Handle form submission
+const handleSubmit = () => {
+const { correctCount, wrongCount, totalQuestions, score } = calculateScore();
+setScoreDetails({
+  correctCount,
+  wrongCount,
+  totalQuestions,
+  score,
+});
+setIsScoreModalOpen(true);
+};
+
+// Render questions
+const renderQuestions = () => {
+const startIndex = (currentPage - 1) * questionsPerPage;
+const endIndex = startIndex + questionsPerPage;
+
+return questions.slice(startIndex, endIndex).map((questionObj, index) => (
+  <div key={index} className="mb-6 p-4 border border-gray-300 rounded-lg">
+    <strong className="block mb-2">Question {questionObj.id}:</strong>
+    <p className="mb-2">{questionObj.question}</p>
+    <ul className="list-disc pl-5">
+      {questionObj.options.map((option, optionIndex) => (
+        <li key={optionIndex} className="mb-1">
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              name={`question${questionObj.id}`}
+              value={option}
+              checked={selectedOptions[questionObj.id] === option}
+              onChange={() => handleOptionChange(questionObj.id, option)}
+              className="mr-2"
+            />
+            {option}
+          </label>
+        </li>
+      ))}
+    </ul>
+  </div>
+));
+};
+
+// Handle page navigation
+const handleNextPage = () => {
+if (currentPage < totalPages) {
+  setCurrentPage(currentPage + 1);
+}
+};
+
+const handlePrevPage = () => {
+if (currentPage > 1) {
+  setCurrentPage(currentPage - 1);
+}
+};
+
+// Toggle score modal
+const toggleScoreModal = () => {
+setIsScoreModalOpen(!isScoreModalOpen);
+};
+
+// Render score modal content
+const renderScoreDetailsModal = () => {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+      <div className="bg-gray-900 rounded-lg p-12 max-w-md">
+        {/* Gif added here */}
+        <img src={welldone_gif} alt="Well Done" className="mx-auto mb-8" />
+        <h2 className="text-xl font-bold mb-4">Result</h2>
+        <p>Total Questions: {scoreDetails.totalQuestions}</p>
+        <p>Correct Answers: {scoreDetails.correctCount}</p>
+        <p>Wrong Answers: {scoreDetails.wrongCount}</p>
+        <p>Total Score: {scoreDetails.score.toFixed(2)}%</p>
+        <button className="mt-4 px-4 py-2 bg-blue-900 text-white rounded hover:bg-blue-800" onClick={toggleScoreModal}>Close</button>
+      </div>
+    </div>
+  );
+};
+return (
+<div className="flex flex-col items-center justify-center min-h-screen bg-gray-700 text-gray-100 py-8">
+  <AdminDashboard />
+  <h1 className="text-3xl font-bold mb-6">Answer all the questions</h1>
+  <div className="w-full max-w-screen-md">{renderQuestions()}</div>
+  <div className="flex justify-center space-x-4 mt-6">
+    <button
+      className={`px-4 py-2 bg-green-800 text-white rounded transition duration-300 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+      onClick={handlePrevPage}
+      disabled={currentPage === 1}
+    >
+      Previous
+    </button>
+    <span className="text-lg">
+      {currentPage} / {totalPages}
+    </span>
+    <button
+      className={`px-8 py-2 bg-blue-900 text-white rounded transition duration-300 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+      onClick={handleNextPage}
+      disabled={currentPage === totalPages}
+    >
+      Next
+    </button>
+    {currentPage === totalPages && (
+      <button
+        className="px-4 py-2 bg-stone-500 text-white rounded transition duration-300"
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    )}
+  </div>
+  {/* Score details modal */}
+  {isScoreModalOpen && renderScoreDetailsModal()}
+</div>
+);
+};
 
 export default Questions;
