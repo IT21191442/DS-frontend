@@ -44,7 +44,7 @@ export default function NavBar() {
                             <a href="/userHomePage" className="text-gray-600 hover:text-indigo-600" onClick={(e) => handleNavLinkClick(e, "/userHomePage")}>
                                 Home
                             </a>
-                            <a href="/" className="text-gray-600 hover:text-indigo-600" onClick={(e) => handleNavLinkClick(e, "/")}>
+                            <a href="/getAllCoursesList" className="text-gray-600 hover:text-indigo-600" onClick={(e) => handleNavLinkClick(e, "/getAllCoursesList")}>
                                 Courses
                             </a>
                             <a href="/" className="text-gray-600 hover:text-indigo-600" onClick={(e) => handleNavLinkClick(e, "/")}>

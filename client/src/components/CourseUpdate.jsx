@@ -71,7 +71,7 @@ const CourseUpdate = () => {
       <div className="flex-grow max-w-2xl mx-auto p-6">
         <h2 className="text-3xl font-bold text-gray-100 mt-0 text-center">
           Update Course Details
-        </h2>
+        </h2><br></br>
         <form
           onSubmit={(e) => e.preventDefault()}
           className="max-w-xl mx-auto bg-gray-600 p-8 rounded-lg"

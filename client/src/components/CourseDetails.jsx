@@ -67,8 +67,8 @@ const CourseQuiz = () => {
           alt={course?.coursename || 'Course Name N/A'} 
           className="max-w-full mt-4"
         /><br></br>
-        <p>Description: {course?.description || 'Description N/A'}</p>
-        <p>Sections: {course?.sections || 'Sections N/A'}</p>
+        <p>Description: {course?.description || 'Description N/A'}</p><br></br>
+        <p>Sections: {course?.sections || 'Sections N/A'}</p><br></br>
         <video controls className="max-w-full mt-2">
           <source src={course?.videoUrl || ''} type="video/mp4" />
           Your browser does not support the video tag.
