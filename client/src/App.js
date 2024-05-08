@@ -18,6 +18,8 @@ import UserProfile from './components/UserProfile';
 import UserManagement from './components/UserManagement';
 import AdminRegister from './components/AdminRegister';
 import UserHomePage from './components/UserHomePage';
+import Clock from './components/Clock';
+import CourseListUser from './components/CourseListUser';
 
 
 
@@ -51,12 +53,18 @@ function App() {
             <Route path="/updateCourse/:id" element={<CourseUpdate />} />
             <Route path="/quizeHome/:id" element={<QuizHome />} />
             <Route path="/questions/:id" element={<Questions />} />
+            <Route path="/clock" element={<Clock />} />
+            
           </>
         )}
         {user === "user" && (
           <>
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/userHomePage" element={<UserHomePage />} />
+
+
+
+            <Route path="/getAllCoursesList" element={<CourseListUser />} />
 
           </>
         )}
