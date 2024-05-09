@@ -309,6 +309,7 @@ const Questions = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
 
+  //
   // State for score details and modal
   const [scoreDetails, setScoreDetails] = useState({
     correctCount: 0,
