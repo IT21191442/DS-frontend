@@ -78,7 +78,7 @@ export default function NavBar() {
                                 <FontAwesomeIcon icon={faUserCircle} size="lg" />
                             </button>
 
-                            <button className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-300" onClick={logOut}>
+                            <button className="bg-blue-950 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-300" onClick={logOut}>
                                 <FontAwesomeIcon icon={faSignOutAlt} /> Logout
                             </button>
 
@@ -86,7 +86,7 @@ export default function NavBar() {
                     ) : (
                         <a
                             href="/login"
-                            className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-300"
+                            className="bg-blue-950 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-300"
                         >
                             <FontAwesomeIcon icon={faSignInAlt} /> Login
                         </a>

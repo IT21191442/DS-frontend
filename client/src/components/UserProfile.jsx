@@ -11,12 +11,12 @@ const UserProfile = () => {
     const [address, setAddress] = useState("");
     const [role, setRole] = useState("");
 
-
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchUserDetails();
     }, []);
+
 
     const fetchUserDetails = async () => {
         try {
@@ -31,7 +31,6 @@ const UserProfile = () => {
                 Authorization: `Bearer ${token}`,
             };
 
-
             const response = await axios.get(
                 "http://localhost:5000/users/api/v1/user-service/profile",
                 { headers }
@@ -44,10 +43,6 @@ const UserProfile = () => {
             setTelephone(telephone);
             setAddress(address);
             setRole(role);
-
-
-            // navigate('/')
-
 
         } catch (error) {
             console.error("Error fetching user details:", error);
@@ -89,19 +84,24 @@ const UserProfile = () => {
         }
     };
 
-
     const handleCancel = () => {
-        navigate('/userHomePage')
+        const role = localStorage.getItem("role");
+        if (role === 'user') {
+            navigate('/userHomePage');
+        }
+        else {
+            navigate('/AdminDashboard');
+        }
     }
 
     return (
-        <div className="container mx-auto">
+        <div className="mx-auto bg-gray-800">
             <div className="flex justify-center">
                 <div className="w-full lg:w-1/2">
                     <div className="ugf-container-wrap flex items-center justify-center min-h-screen">
-                        <div className="ugf-container border-2 border-gray-200 rounded-lg shadow-lg">
+                        <div className="ugf-container border-2 border-gray-200 bg-gray-200 rounded-lg shadow-lg">
                             <div className="ugf-content ugf-content-reg p-8">
-                                <p className="text-lg text-gray-500">
+                                <p className=" text-gray-900 font-bold text-2xl">
                                     Your account information:
                                 </p>
                             </div>
@@ -176,22 +176,23 @@ const UserProfile = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="flex justify-end space-x-4 mt-4">
+                                <div className="flex justify-center mt-4">
                                     <button
                                         type="button"
-                                        className="btn bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                                        className="btn bg-red-800 hover:bg-red-700 text-white px-20 py-2 rounded mr-4"
                                         onClick={handleCancel}
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         type="button"
-                                        className="btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+                                        className="btn bg-blue-950 hover:bg-blue-900 text-white px-20 py-2 rounded"
                                         onClick={handleUpdateDetails}
                                     >
                                         Update
                                     </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
