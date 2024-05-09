@@ -300,15 +300,16 @@ const Questions = () => {
     id === "JV3070"
       ? javaQuestions
       : id === "PH3040"
-      ? phpQuestions
-      : id === "JS3090"
-      ? javaScriptQuestions
-      : pythonQuestions;
+        ? phpQuestions
+        : id === "JS3090"
+          ? javaScriptQuestions
+          : pythonQuestions;
 
   // State for selected options and page navigation
   const [selectedOptions, setSelectedOptions] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
 
+  //
   // State for score details and modal
   const [scoreDetails, setScoreDetails] = useState({
     correctCount: 0,
@@ -430,7 +431,7 @@ const Questions = () => {
       navigate(`/quizeHome/${id}`);
       console.log(id);
     };
-    
+
 
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
@@ -483,9 +484,8 @@ const Questions = () => {
       <div className="w-full max-w-screen-md">{renderQuestions()}</div>
       <div className="flex justify-center space-x-4 mt-6">
         <button
-          className={`px-4 py-2 bg-green-800 text-white rounded transition duration-300 ${
-            currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`px-4 py-2 bg-green-800 text-white rounded transition duration-300 ${currentPage === 1 ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           onClick={handlePrevPage}
           disabled={currentPage === 1}
         >
@@ -495,9 +495,8 @@ const Questions = () => {
           {currentPage} / {totalPages}
         </span>
         <button
-          className={`px-8 py-2 bg-blue-900 text-white rounded transition duration-300 ${
-            currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
-          }`}
+          className={`px-8 py-2 bg-blue-900 text-white rounded transition duration-300 ${currentPage === totalPages ? "opacity-50 cursor-not-allowed" : ""
+            }`}
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
@@ -514,7 +513,7 @@ const Questions = () => {
       </div>
       {/* Score details modal */}
       {isScoreModalOpen && renderScoreDetailsModal()}
-      
+
     </div>
   );
 };
